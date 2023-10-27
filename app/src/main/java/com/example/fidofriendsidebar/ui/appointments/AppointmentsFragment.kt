@@ -4,39 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fidofriendsidebar.databinding.FragmentSlideshowBinding
 
 class AppointmentsFragment : Fragment() {
-
-    private var _binding: FragmentSlideshowBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val appointmentsViewModel: AppointmentsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val slideshowViewModel =
-            ViewModelProvider(this).get(AppointmentsViewModel::class.java)
-
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        val binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        slideshowViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
-    }
+        val recyclerView: RecyclerView = binding.recyclerView
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        // Configura el RecyclerView y el adaptador
+        val meetingsAdapter = MeetingsAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = meetingsAdapter
+
+        // Observa los cambios en la lista de reuniones y actualiza el adaptador
+        appointmentsViewModel.meetings.observe(viewLifecycleOwner) { meetings ->
+            meetingsAdapter.submitList(meetings)
+        }
+
+        return root
     }
 }
