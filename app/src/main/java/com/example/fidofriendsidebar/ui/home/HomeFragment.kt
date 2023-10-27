@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
         val newPetBtn: Button = binding.newPetBtn
+
         newPetBtn.setOnClickListener {
             val intent = Intent(activity, PetRegister::class.java)
             startActivity(intent)
