@@ -4,6 +4,7 @@ import Beans.LoginBody
 import Beans.Pet
 import Beans.PetRegisterRequest
 import Beans.RegisterBody
+import Beans.Service
 import Beans.User
 import retrofit2.Call
 import retrofit2.http.Body
@@ -23,4 +24,6 @@ interface FidoFriendApi {
 
     @POST("/api/Pet")
     fun registerPet(@Body requestBody: PetRegisterRequest): Call<Pet>
+    @GET("/api/Service")
+    fun getServices(): Call<List<Service>>
 }

@@ -47,7 +47,7 @@ class Login : AppCompatActivity() {
                         user = response.body()!!
                         val toastMessage = "Welcome, ${user.firstName}!"
                         Toast.makeText(this@Login, toastMessage, Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@Login, MainActivity::class.java))
+                        startActivity(Intent(this@Login, Service::class.java))
                     }
 
                     override fun onFailure(call: Call<User>, t: Throwable) {
