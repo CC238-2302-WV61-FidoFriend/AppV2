@@ -2,6 +2,7 @@ package com.example.fidofriendsidebar.ui.profile
 
 import Beans.User
 import Interface.FidoFriendApi
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.fidofriendsidebar.R
+import com.example.fidofriendsidebar.databinding.FragmentHomeBinding
+import com.example.fidofriendsidebar.databinding.FragmentProfileBinding
+import com.example.fidofriendsidebar.ui.EditProfile
+import com.example.fidofriendsidebar.ui.PetRegister
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -59,8 +64,13 @@ class ProfileFragment : Fragment() {
             override fun onFailure(call: Call<User>, t: Throwable) {
                 t.printStackTrace()
             }
-
         })
+
+        val buttonEditProfile: Button = view.findViewById(R.id.buttonEditProfile)
+        buttonEditProfile.setOnClickListener {
+            val intent = Intent(activity, EditProfile::class.java)
+            startActivity(intent)
+        }
 
         return view
     }

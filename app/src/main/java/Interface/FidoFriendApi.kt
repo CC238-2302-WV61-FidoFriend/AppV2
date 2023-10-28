@@ -3,6 +3,7 @@ package Interface
 import Beans.LoginBody
 import Beans.Pet
 import Beans.PetRegisterRequest
+import Beans.Profile
 import Beans.RegisterBody
 import Beans.Service
 import Beans.User
@@ -21,6 +22,9 @@ interface FidoFriendApi {
 
     @POST("/api/User")
     fun registerUser(@Body requestBody: RegisterBody): Call<User>
+
+    @POST("/api/User")
+    fun editUser(@Body requestBody: Profile): Call<User>
 
     @POST("/api/Pet")
     fun registerPet(@Body requestBody: PetRegisterRequest): Call<Pet>
