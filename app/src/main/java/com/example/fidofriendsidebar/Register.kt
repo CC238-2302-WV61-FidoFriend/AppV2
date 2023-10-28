@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import com.example.fidofriendsidebar.ui.profile.ProfileFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -54,6 +55,7 @@ class Register : AppCompatActivity() {
                         user = response.body()!!
                         val toastMessage = "Your register, ${user.firstName}!"
                         Toast.makeText(this@Register, toastMessage, Toast.LENGTH_SHORT).show()
+
                         startActivity(Intent(this@Register, MainActivity::class.java))
                     }
 
